@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赏金女王 · 信息指引页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f4f7fa;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: linear-gradient(145deg, #0b0f1a 0%, #192133 100%);
+            color: #eef2f7;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120%;
+            height: 60px;
+            background: #f4f7fa;
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #facc15, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 0.5rem;
+            opacity: 0.85;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        /* 卡片式区域 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 20, 40, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.25s ease;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #111827;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card h3::before {
+            content: '▸';
+            color: #eab308;
+            font-size: 1.2rem;
+        }
+
+        .card p, .card li {
+            font-size: 0.98rem;
+            color: #374151;
+            margin-bottom: 0.4rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card ul li {
+            padding: 0.3rem 0 0.3rem 1.2rem;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #eab308;
+            font-weight: bold;
+        }
+
+        .scene-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.6rem;
+        }
+
+        .scene-tag {
+            background: #f3f4f6;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #1f2937;
+            border: 1px solid #e5e7eb;
+        }
+
+        .link-paragraph {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 2rem;
+            margin-top: 2.5rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e9edf2;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .link-paragraph a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #93c5fd;
+            transition: color 0.2s, border-bottom-color 0.2s;
+        }
+
+        .link-paragraph a:hover {
+            color: #1e40af;
+            border-bottom-color: #1e40af;
+        }
+
+        .highlight {
+            color: #eab308;
+            font-weight: 500;
+        }
+
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.8rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e9edf2;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.8rem;
+            border-bottom: 1px solid #f0f2f5;
+            padding-bottom: 0.6rem;
+        }
+
+        .faq-mini details:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-mini summary {
+            font-weight: 600;
+            color: #1f2937;
+            cursor: pointer;
+            padding: 0.3rem 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-mini summary::before {
+            content: 'Q';
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #eab308;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-right: 0.6rem;
+            flex-shrink: 0;
+        }
+
+        .faq-mini details p {
+            margin-top: 0.5rem;
+            padding-left: 2.2rem;
+            color: #4b5563;
+            font-size: 0.95rem;
+        }
+
+        .footer-note {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6b7280;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.5rem;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            .link-paragraph {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <h1>赏金女王 · 站点索引</h1>
+    <p>稳定入口 · 清晰指引 · 信息卡片式概览</p>
+</section>
+
+<div class="container">
+
+    <!-- 主视觉 / 用途卡片 -->
+    <div class="card-grid">
+        <div class="card">
+            <h3>主要用途</h3>
+            <p>本页面作为 <strong>赏金女王</strong> 相关信息的整理入口，集中展示内容方向、适用场景以及常见疑问摘要。适合希望快速了解站点定位的新访客，也方便回头客查阅要点。</p>
+            <p style="margin-top: 0.8rem;">页面结构保持轻量、直接，不堆积冗余装饰，每张卡片承担一个说明职能。</p>
+        </div>
+
+        <div class="card">
+            <h3>内容特点</h3>
+            <ul>
+                <li>围绕赏金主题整理分类信息</li>
+                <li>兼顾新手引导与老用户速查</li>
+                <li>更新节奏稳定，条目清晰</li>
+                <li>避免过度承诺，注重真实说明</li>
+                <li>卡片式布局，重点一目了然</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>适合人群</h3>
+            <ul>
+                <li>对赏金题材感兴趣的内容浏览者</li>
+                <li>希望获得结构化信息索引的用户</li>
+                <li>偏好安静、无干扰阅读界面的人</li>
+                <li>需要快速定位站点核心模块的访客</li>
+            </ul>
+            <div class="scene-list" style="margin-top: 0.8rem;">
+                <span class="scene-tag">休闲浏览</span>
+                <span class="scene-tag">信息收集</span>
+                <span class="scene-tag">主题探索</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>使用场景</h3>
+            <p>无论你是在通勤间隙、办公休息时，或是专门抽出一段安静时间，都可以通过卡片快速浏览当前板块。页面也适合在移动设备上阅读，卡片会自动适应屏幕宽度。</p>
+            <p style="margin-top: 0.6rem;">如果你需要更深入的了解，可以通过下方链接跳转到主站对应页面。</p>
+        </div>
+    </div>
+
+    <!-- 自然链接段落 -->
+    <div class="link-paragraph">
+        <p>本页面是<a href="https://cn-pgqueenofbounty.com">赏金女王</a>的一个辅助说明页，旨在用卡片方式提炼内容架构、目标用户和常见问题。如果你已经对背景有一定了解，可以直接访问主站深入浏览。若你才刚刚接触这个主题，建议先阅读上方卡片中的要点，再决定下一步方向。整个站点的内容围绕赏金女王这一主题展开，保持真实与克制，不做夸大渲染。</p>
+        <p style="margin-top: 1rem;">另外，你也可以将本页视为一个轻量级导航工具——卡片里列出的场景、人群和特点，有助于你判断哪些内容与自己的兴趣更匹配。在后续访问中，主站会持续补充更多细节。</p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+        <h3 style="margin-bottom: 1rem; font-weight: 600; color: #111827; display: flex; gap: 0.4rem;">
+            <span style="color: #eab308;">❓</span> 常见疑问摘要
+        </h3>
+        <details>
+            <summary>这个页面与主站是什么关系？</summary>
+            <p>本页是独立的信息说明页，不直接替代主站功能。它更像一张索引卡片，帮你快速了解<a href="https://cn-pgqueenofbounty.com">赏金女王</a>站点的大致方向和内容分类。</p>
+        </details>
+        <details>
+            <summary>为什么要用卡片式布局？</summary>
+            <p>卡片式结构可以将不同维度的信息（用途、特点、人群、场景）分开陈列，便于对比和跳读，尤其适合从零开始了解一个主题的用户。</p>
+        </details>
+        <details>
+            <summary>内容更新频率如何？</summary>
+            <p>主站会根据主题发展不定期补充条目，本说明页也会随之调整卡片内容，保持信息同步。具体更新节奏以实际变动为准。</p>
+        </details>
+        <details>
+            <summary>我该如何开始浏览？</summary>
+            <p>可以先阅读上方四张卡片，找到最感兴趣的部分，然后通过段落中的链接进入主站对应位置。没有固定顺序，随你习惯就好。</p>
+        </details>
+    </div>
+
+    <div class="footer-note">
+        <p>简明信息卡 · 稳定入口指引 · 内容定期校准</p>
+    </div>
+
+</div>
+</body>
+</html>
